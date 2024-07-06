@@ -18,7 +18,7 @@ function playGame()
         computerChoice = getComputerChoice();
         playRound(humanChoice, computerChoice);
     }
-
+    checkWinner();
 }
 
 function checkWinner()
