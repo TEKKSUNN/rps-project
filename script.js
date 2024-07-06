@@ -71,8 +71,6 @@ function playRound(humanChoice, computerChoice)
     }
     let showDraw = () => {
         console.log("DRAW!");
-        humanWins++;
-        computerWins++;
         showMoves();
     }
     if (humanChoice === computerChoice)
