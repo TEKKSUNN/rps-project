@@ -5,7 +5,7 @@
 */
 const choices = ["rock", "paper", "scissors"];
 
-function playRPS()
+function playGame()
 {
     humanChoice = getHumanChoice();
     computerChoice = getComputerChoice();
