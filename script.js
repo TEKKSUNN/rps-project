@@ -90,6 +90,7 @@ function playRound(humanChoice, computerChoice)
         humanWins++;
         uiHumanWins.textContent = humanWins;
         resultText.textContent = 'Result: YOU WON!';
+        resultText.style.backgroundColor = '#00FF00';
         showMoves();
     }
     let showLose = () => {
@@ -97,11 +98,13 @@ function playRound(humanChoice, computerChoice)
         computerWins++;
         uiComputerWins.textContent = computerWins;
         resultText.textContent = 'Result: YOU LOST!';
+        resultText.style.backgroundColor = '#FF0000';
         showMoves();
     }
     let showDraw = () => {
         console.log("DRAW!");
         resultText.textContent = 'Result: ITS A DRAW!';
+        resultText.style.backgroundColor = '#555555';
         showMoves();
     }
     if (humanChoice === computerChoice)
