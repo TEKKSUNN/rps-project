@@ -84,14 +84,12 @@ function playRound(humanChoice, computerChoice)
     let showWin = () => {
         console.log("WIN!");
         humanWins++;
-        console.log(humanWins);
         uiHumanWins.textContent = humanWins;
         resultText.textContent = 'Result: YOU WON!';
         showMoves();
     }
     let showLose = () => {
         console.log("LOSE!");
-        console.log(computerWins);
         computerWins++;
         uiComputerWins.textContent = computerWins;
         resultText.textContent = 'Result: YOU LOST!';
