@@ -7,9 +7,14 @@ const choices = ["rock", "paper", "scissors"];
 let humanWins = 0;
 let computerWins = 0;
 let roundCount = 0;
+const scoresTab = document.getElementById('scores');
 const uiHumanWins = document.getElementById('player-score');
 const uiComputerWins = document.getElementById('computer-score');
 const moveHistory = document.getElementById('move-history');
+const overallResultText = document.createElement('p');
+overallResultText.style.display = "none";
+scoresTab.appendChild(overallResultText);
+let shownOverallResult = 0;
 
 function playGame(rounds)
 {
@@ -64,6 +69,7 @@ function playRound(humanChoice, computerChoice)
     if (checkMaxWins()){
         return;
     }
+    overallResultText.style.display = "none";
     roundCount++;
     const moveLog = document.createElement('div');
     moveLog.classList = "move-logs";
@@ -148,17 +154,36 @@ function playRound(humanChoice, computerChoice)
 }
 
 const RESET = () => {
+    if (humanWins > computerWins)
+    {
+        overallResultText.textContent = "OVERALL, YOU HAVE WON!";
+        overallResultText.style.backgroundColor = '#00FF00';
+    }
+    else {
+        overallResultText.textContent = "OVERALL, YOU HAVE LOST!";
+        overallResultText.style.backgroundColor = '#FF0000';
+    }
     humanWins = 0;
     computerWins = 0;
     roundCount = 0;
     uiHumanWins.textContent = '0';
     uiComputerWins.textContent = '0';
     moveHistory.innerHTML = '';
+    if (shownOverallResult < 1)
+    {
+        overallResultText.style.display = 'block';
+        shownOverallResult++;
+    }
+    else {
+        overallResultText.style.display = 'none';
+        shownOverallResult++;
+    }
 }
 
 const checkMaxWins = () => {
     if (humanWins >= 5 || computerWins >= 5)
     {
+        shownOverallResult = 0;
         RESET();
         return true;
     }
