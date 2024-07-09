@@ -4,16 +4,19 @@
     - process and output result
 */
 const choices = ["rock", "paper", "scissors"];
-let humanWins;
-let computerWins;
+let humanWins = 0;
+let computerWins = 0;
+let roundCount = 0;
+const uiHumanWins = document.getElementById('player-score');
+const uiComputerWins = document.getElementById('computer-score');
+const moveHistory = document.getElementById('move-history');
 
-function playGame()
+function playGame(rounds)
 {
     humanWins = 0;
     computerWins = 0;
-    for (let i = 0; i < 5; i++)
+    for (let i = 0; i < rounds; i++)
     {
-        console.log(`ROUND ${i + 1}!`);
         humanChoice = getHumanChoice();
         computerChoice = getComputerChoice();
         playRound(humanChoice, computerChoice);
@@ -58,19 +61,45 @@ function getComputerChoice()
 
 function playRound(humanChoice, computerChoice)
 {
-    let showMoves = () => console.log(`You played ${humanChoice}, computer played ${computerChoice}`);
+    if (checkMaxWins()){
+        return;
+    }
+    roundCount++;
+    const moveLog = document.createElement('div');
+    const resultText = document.createElement('p');
+    let showMoves = () => {
+        console.log(`You played ${humanChoice}, computer played ${computerChoice}`);
+        const roundText = document.createElement('h3');
+        roundText.textContent = `Round ${roundCount}`
+        const humanMove = document.createElement('p');
+        humanMove.textContent = `Player Move: ${humanChoice}`;
+        const computerMove = document.createElement('p');
+        computerMove.textContent = `Computer Move: ${computerChoice}`;
+        moveLog.appendChild(roundText);
+        moveLog.appendChild(humanMove);
+        moveLog.appendChild(computerMove);
+        moveLog.appendChild(resultText);
+        moveHistory.appendChild(moveLog);
+    };
     let showWin = () => {
         console.log("WIN!");
         humanWins++;
+        console.log(humanWins);
+        uiHumanWins.textContent = humanWins;
+        resultText.textContent = 'Result: YOU WON!';
         showMoves();
     }
     let showLose = () => {
         console.log("LOSE!");
+        console.log(computerWins);
         computerWins++;
+        uiComputerWins.textContent = computerWins;
+        resultText.textContent = 'Result: YOU LOST!';
         showMoves();
     }
     let showDraw = () => {
         console.log("DRAW!");
+        resultText.textContent = 'Result: ITS A DRAW!';
         showMoves();
     }
     if (humanChoice === computerChoice)
@@ -113,3 +142,40 @@ function playRound(humanChoice, computerChoice)
     }
 }
 
+const RESET = () => {
+    humanWins = 0;
+    computerWins = 0;
+    roundCount = 0;
+    uiHumanWins.textContent = '0';
+    uiComputerWins.textContent = '0';
+    moveHistory.innerHTML = '';
+}
+
+const checkMaxWins = () => {
+    if (humanWins >= 5 || computerWins >= 5)
+    {
+        RESET();
+        return true;
+    }
+    return false;
+}
+
+const buttons = document.getElementById('buttons');
+buttons.addEventListener('click', function (event) {
+    let target = event.target;
+    switch (target.id)
+    {
+        case 'rock':
+            playRound('rock', getComputerChoice());
+            break;
+        case 'paper':
+            playRound('paper', getComputerChoice());
+            break;
+        case 'scissors':
+            playRound('scissors', getComputerChoice());
+            break;
+    }
+});
+
+const resetButton = document.querySelector('#results > button#reset');
+resetButton.addEventListener('click', RESET);
