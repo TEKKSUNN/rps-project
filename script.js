@@ -66,6 +66,7 @@ function playRound(humanChoice, computerChoice)
     }
     roundCount++;
     const moveLog = document.createElement('div');
+    moveLog.classList = "move-logs";
     const resultText = document.createElement('p');
     let showMoves = () => {
         console.log(`You played ${humanChoice}, computer played ${computerChoice}`);
@@ -80,6 +81,9 @@ function playRound(humanChoice, computerChoice)
         moveLog.appendChild(computerMove);
         moveLog.appendChild(resultText);
         moveHistory.insertBefore(moveLog, moveHistory.firstChild);
+        if (roundCount > 3) {
+            moveHistory.removeChild(moveHistory.lastElementChild);
+        }
     };
     let showWin = () => {
         console.log("WIN!");

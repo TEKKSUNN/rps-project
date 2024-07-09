@@ -1,0 +1,82 @@
+* {
+    font-family: sans-serif;
+}
+
+button {
+    display: inline-block;
+    background-color: purple;
+    color: yellow;
+    border-radius: 2vw;
+}
+
+body {
+    background-color: rgb(189, 98, 189);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+header {
+    display: flex;
+    background-color: purple;
+    border-radius: 50rem;
+    align-items: center;
+    justify-content: center;
+    padding: 10px 25vw;
+    margin-bottom: 5vh;
+    color: yellow;
+}
+
+main {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    background-color: rgb(168, 127, 168);
+    border: 5px solid black;
+    border-radius: 10vw;
+    height: 75vh;
+    width: 75vw;
+    padding: 5vw;
+    box-sizing: border-box;
+    gap: 8px;
+}
+
+main #buttons {
+    display: flex;
+    flex-direction: row;
+    flex: 1;
+    gap: 8px;
+}
+
+main #buttons .btn {
+    font-size: 24px;
+}
+
+main #results {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    flex: 1;
+}
+
+main #results button#reset {
+    height: 2.5rem;
+    width: 7.5rem;
+    box-sizing: border-box;
+    margin-bottom: 8px;
+}
+
+main #results div#move-history {
+    display: flex;
+    flex-wrap: 1;
+    flex: 1;
+    gap: 8px;
+}
+
+main #results div#move-history .move-logs {
+    background-color: purple;
+    color: yellow;
+    border: 5px solid black;
+    border-radius: 10px;
+    padding: 8px;
+}
