@@ -79,7 +79,7 @@ function playRound(humanChoice, computerChoice)
         moveLog.appendChild(humanMove);
         moveLog.appendChild(computerMove);
         moveLog.appendChild(resultText);
-        moveHistory.appendChild(moveLog);
+        moveHistory.insertBefore(moveLog, moveHistory.firstChild);
     };
     let showWin = () => {
         console.log("WIN!");
